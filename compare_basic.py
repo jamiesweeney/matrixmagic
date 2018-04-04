@@ -4,22 +4,27 @@ import time
 import sys
 import math
 
-#-- The operations that we want to evaluate --#
+#-- The operations that we want to evaluate and their lamda functions --#
 
 def f_identity(x):
     return x
+# f_identity = lambda x: x
 
 def f_addition(x):
     return x + 10
+# f_addition = lambda x: x+10
 
 def f_subtraction(x):
     return x - 10
+# f_subtraction = lambda x: x-10
 
 def f_multiplication(x):
     return x * 10
+# f_multiplication = lambda x: x*10
 
 def f_division(x):
     return (x / 10)
+# f_division = lambda x: x/10
 
 
 #-- The methods that we want to evaluate --#
@@ -57,7 +62,7 @@ def doScalerOperation(matrix, func):
 
 #-- Comparison logic --#
 
-# Compares for a random array and
+# Compares for a random array and a function
 def compare(shape, l_func):
 
     # Generate random int (as float) matrix
@@ -89,7 +94,7 @@ def compare(shape, l_func):
 
     return (t_iter, t_rec, t_sca)
 
-
+# Compares
 def compareMultiple(shapes, func):
 
     # Arrays for holding results, and axis
