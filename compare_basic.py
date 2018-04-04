@@ -63,7 +63,7 @@ def doScalerOperation(matrix, func):
 #-- Comparison logic --#
 
 # Compares for a random array and a function
-def compare(shape, l_func):
+def compare(shape, l_func, print_b):
 
     # Generate random int (as float) matrix
     matrix = np.random.randint(low=0, high=1000, size=shape)
@@ -86,16 +86,17 @@ def compare(shape, l_func):
 
 
     # Give output
-    print ("Iterative : %.3f seconds." % t_iter)
-    print ("Recursive : %.3f seconds." % t_rec)
-    print ("Scaler : %.3f seconds." % t_sca)
-    print (np.array_equiv(res_iter, res_rec))
-    print (np.array_equiv(res_rec, res_sca))
+    if (print_b == True):
+        print ("Iterative : %.3f seconds." % t_iter)
+        print ("Recursive : %.3f seconds." % t_rec)
+        print ("Scaler : %.3f seconds." % t_sca)
+        print (np.array_equiv(res_iter, res_rec))
+        print (np.array_equiv(res_rec, res_sca))
 
     return (t_iter, t_rec, t_sca)
 
-# Compares
-def compareMultiple(shapes, func):
+# Compares over a list of shapes
+def compareMultiple(shapes, func, print_b):
 
     # Arrays for holding results, and axis
     r1 = np.array(()).reshape(0,1)
@@ -105,8 +106,8 @@ def compareMultiple(shapes, func):
 
     # Collect results for all shapes
     for shape in shapes:
-        res = compare(shape, func)
-        print (res)
+        res = compare(shape, func, print_b)
+
         r1 = np.vstack([r1, res[0]])
         r2 = np.vstack([r2, res[1]])
         r3 = np.vstack([r3, res[2]])
@@ -117,6 +118,7 @@ def compareMultiple(shapes, func):
             n = n*s
         s_axis = np.vstack([s_axis, math.log2(n)])
 
+    # Plot the results
     plt.plot(s_axis, r1, label='Iterative')
     plt.plot(s_axis, r2, label='Recursive')
     plt.plot(s_axis, r3, label='Scaler')
@@ -134,4 +136,4 @@ while num < 10000:
     shapes = shapes + ((num, num),)
     num = num*2
 
-compareMultiple(shapes, f_multiplication)
+compareMultiple(shapes, f_multiplication, True)
