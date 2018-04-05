@@ -1,3 +1,11 @@
+'''
+    Jamie Sweeney
+    April 2018
+
+    Some basic comparisons for matrix operations
+
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -132,7 +140,7 @@ def compareMultiple(shapes, func, print_b):
 # Produces a set of matrix shapes
 shapes = (())
 num = 1
-while num < 10000:
+while num < 5000:
     shapes = shapes + ((num, num),)
     num = num*2
 
